@@ -5,14 +5,14 @@ import java.util.HashMap;
 import enties.actors.Person;
 
 public class People {
-    Map<Integer,Person> pessoas;
+    private Map<Integer,Person> pessoas;
 
     public People(){
         pessoas = new HashMap<Integer, Person>();
     }
 
     public void addPeople(Person person){
-       // pessoas.put(person.getMatricula(), person);
+       pessoas.put(person.getMatricula(), person);
     }
 
     public boolean removePeople(int id){
