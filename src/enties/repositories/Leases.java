@@ -16,8 +16,7 @@ public class Leases {
 	}
 	
 	public boolean remove(int id) {
-		this.repository.remove(id);
-		return true;
+		return this.repository.remove(id);
 	}
 	
 	public Location get(int id) { //id return person

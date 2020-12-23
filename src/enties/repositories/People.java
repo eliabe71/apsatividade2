@@ -8,29 +8,22 @@ public class People {
     private Map<Integer,Person> pessoas;
 
     public People(){
-        pessoas = new HashMap<Integer, Person>();
+        this.pessoas = new HashMap<Integer, Person>();
     }
 
-    public void addPeople(Person person){
-       pessoas.put(person.getMatricula(), person);
+    public boolean addPeople(Person person){
+       this.pessoas.put(person.getMatricula(), person);
+       return true;
     }
 
     public boolean removePeople(int id){
-        for(int key : pessoas.keySet()){
-            if(key == id){
-                pessoas.remove(id);
-                return true;
-            }
-        }
+        if(this.pessoas.remove(id) != null);
+            return true;
         return false;
     }
 
     public Person getPerson(int id){
-        for(int key : pessoas.keySet()){
-            if(key == id)
-                return pessoas.get(id);
-        }
-        return null;
+        return this.pessoas.get(id);
     }
 
 }

@@ -15,8 +15,9 @@ public class Products {
 	}
 	
 	public boolean remove(int id) {
-		this.repository.remove(id);
-		return true;
+		if(this.repository.remove(id) != null);
+			return true;
+		return false;
 	}
 	
 	public Product get(int id) { //id return person

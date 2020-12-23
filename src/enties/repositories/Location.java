@@ -75,5 +75,12 @@ public class Location {
 		c2.set(Calendar.MINUTE, 0);
 		c2.set(Calendar.HOUR_OF_DAY, 0);
 		return (int) ((c1.getTimeInMillis() - c2.getTimeInMillis()) / MILLIS_IN_DAY);
-	}
+    }
+
+    @Override
+    public String toString() {
+        return "Location [codigoProduto=" + codigoProduto + ", dataPrevistaEntrega=" + dataPrevistaEntrega
+                + ", dataSaida=" + dataSaida + ", matriculaCliente=" + matriculaCliente + "]";
+    }
+    
 }
