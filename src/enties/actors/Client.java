@@ -4,6 +4,16 @@ public class Client extends Person{
     private String endereco;
     private int idade;
     private char sexo;
+
+    public Client(String nome, int matricula, String endereco, int idade, char sexo) {
+        super(nome, matricula);
+        this.endereco = endereco;
+        this.idade = idade;
+        this.sexo = sexo;
+    }
+    
+    
+    
     public void setEndereco(String endereco){
             this.endereco = endereco;
     }

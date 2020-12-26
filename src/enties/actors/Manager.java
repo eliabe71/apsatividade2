@@ -5,14 +5,9 @@ import enties.repositories.*;
 public class Manager extends Employee{
     private People repo;
     private Products product;
-    
-    public Manager(People repo, String login, String senha) {
-        super(login, senha);
-        this.repo = repo;
-    }
 
-    public Manager(People repo, Products product, String login, String senha) {
-        super(login, senha);
+    public Manager(String nome, int matricula, String login, String senha, People repo, Products product) {
+        super(nome, matricula, login, senha);
         this.repo = repo;
         this.product = product;
     }
@@ -43,16 +38,17 @@ public class Manager extends Employee{
         return true;
     }
     public boolean procurarOperador(int id){
-        if(repo.getPerson(id)== null ) 
+        if(repo.getPerson(id) == null || !(repo.getPerson(id) instanceof OperatorSystem)) 
             return false;
         
         System.out.println(repo.getPerson(id));
         return true;
     }
     public boolean procurarCliente(int id){
-        if(repo.getPerson(id)== null )
+        if(repo.getPerson(id) == null || !(repo.getPerson(id) instanceof Client)) {
             return false;
-        
+        }
+ 
         System.out.println(repo.getPerson(id));
         return true;
     }
@@ -92,8 +88,26 @@ public class Manager extends Employee{
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
-    
+
+    @Override
+    public String getNome() {
+        return nome;
+    }
+
+    @Override
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    @Override
+    public int getMatricula() {
+        return matricula;
+    }
+
+    @Override
+    public void setMatricula(int matricula) {
+        this.matricula = matricula;
+    }
 
     @Override
     public String toString() {

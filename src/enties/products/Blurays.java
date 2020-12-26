@@ -23,6 +23,24 @@ public class Blurays extends Film {
         this.idiomas = idiomas;
     }
 
+    public int getAnoLancamaneto() {
+        return anoLancamaneto;
+    }
+
+    public void setAnoLancamaneto(int anoLancamaneto) {
+        this.anoLancamaneto = anoLancamaneto;
+    }
+
+    @Override
+    public int getDuracao() {
+        return duracao;
+    }
+
+    @Override
+    public void setDuracao(int duracao) {
+        this.duracao = duracao;
+    }
+
     @Override
     public double calculaDiaria() {
         return 3.0;

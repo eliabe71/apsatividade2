@@ -4,10 +4,16 @@ public abstract class Employee extends Person{
     protected String login;
     protected String senha;
 
-    public Employee(String login, String senha) {
+    
+    
+    public Employee(String nome, int matricula, String login, String senha) {
+        super(nome, matricula);
         this.login = login;
         this.senha = senha;
     }
+
+    
+    
     
     public String getLogin() {
         return login;

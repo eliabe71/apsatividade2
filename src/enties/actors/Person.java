@@ -3,6 +3,11 @@ package enties.actors;
 public abstract class Person {
     protected String nome;
     protected int matricula;
+
+    public Person(String nome, int matricula) {
+        this.nome = nome;
+        this.matricula = matricula;
+    }  
     
     public int getMatricula(){
         return this.matricula;

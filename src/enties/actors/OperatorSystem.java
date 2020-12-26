@@ -8,14 +8,18 @@ public class OperatorSystem extends Employee{
     private Products repoProduct;
     private People repoPeople;
 
-    
-    
-    public OperatorSystem(Leases repoleases, Products repoProduct, People repoPeople, String login, String senha) {
-        super(login, senha);
+    public OperatorSystem(String nome, int matricula, String login, String senha) {
+        super(nome, matricula, login, senha);
+    }
+
+    public OperatorSystem(Leases repoleases, Products repoProduct, People repoPeople, String nome, int matricula, String login, String senha) {
+        super(nome, matricula, login, senha);
         this.repoleases = repoleases;
         this.repoProduct = repoProduct;
         this.repoPeople = repoPeople;
     }
+
+    
     
     
     public boolean criarLocacao(String codigoProduto, int matriculaCliente,
@@ -86,8 +90,26 @@ public class OperatorSystem extends Employee{
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
-    
+
+    @Override
+    public String getNome() {
+        return nome;
+    }
+
+    @Override
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    @Override
+    public int getMatricula() {
+        return matricula;
+    }
+
+    @Override
+    public void setMatricula(int matricula) {
+        this.matricula = matricula;
+    }
 
     @Override
     public String toString() {
