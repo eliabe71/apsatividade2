@@ -33,22 +33,27 @@ public class Manager extends Employee{
         repo.addPeople(person);
     }
     public void listarClientes(){
-
+        repo.listarClientes();
     }
     public void listarProdutos(){
-
+        product.listarProdutos();
     }
     public void listarOperadores(){
+        repo.listarOperadores();
+    }
+    public boolean procurarProduto(String id){
+
+        if(product.get(id)== null ) return false;
+        return true;
+    }
+    public boolean procurarOperador(int id){
+        if(repo.getPerson(id)== null ) return false;
+        return true;
 
     }
-    public void procurarProduto(int id){
-        repo.getPerson(id);
-    }
-    public void procurarOperador(int id){
-        repo.getPerson(id);
-    }
-    public void procurarCliente(int id){
-        repo.getPerson(id);
+    public boolean procurarCliente(int id){
+        if(repo.getPerson(id)== null ) return false;
+        return true;
     }
 
     @Override

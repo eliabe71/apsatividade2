@@ -33,13 +33,14 @@ public class OperatorSystem extends Employee{
         double v = (double) (p.calculaDiaria() + newLocation.calcularMulta());
         return v;
     }
-    public Product procuraProduto(String codigoProduto){
-        return repoProduct.get(codigoProduto);
+    public boolean procuraProduto(String codigoProduto){
+        if( repoProduct.get(codigoProduto) == null) return false;
+        return true;
 
     }
-    public Person procuraClente(int id){
-        return repoPeople.getPerson(id);
-
+    public boolean procuraClente(int id){
+         if (repoPeople.getPerson(id) == null) return false;
+            return true ;
     }
     
     @Override
