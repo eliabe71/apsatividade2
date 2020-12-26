@@ -38,20 +38,22 @@ public class People {
         }
     }
      
-     public boolean loginManager(String login, String senha){
+     public Manager loginManager(String login, String senha){
          for(Person p : pessoas.values()){
             if(p instanceof Manager)
-                return login.equals(((Manager) p).getLogin()) && senha.equals(((Manager) p).getSenha());
+                if(login.equals(((Manager) p).getLogin()) && senha.equals(((Manager) p).getSenha()))
+                    return (Manager) p;
          }
-         return false;
+         return null;
      }
      
-     public boolean loginOperatorSystem(String login, String senha){
+     public OperatorSystem loginOperatorSystem(String login, String senha){
          for(Person p : pessoas.values()){
             if(p instanceof OperatorSystem)
-                return login.equals(((OperatorSystem) p).getLogin()) && senha.equals(((OperatorSystem) p).getSenha());
+                if(login.equals(((OperatorSystem) p).getLogin()) && senha.equals(((OperatorSystem) p).getSenha()))
+                    return (OperatorSystem) p;
          }
-         return false;
+         return null;
      }
 
     public Person getPerson(int id){

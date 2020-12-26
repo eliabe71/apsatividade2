@@ -15,6 +15,8 @@ public class Main {
         Products repoProdutos = new Products();
         Leases repoLocacoes = new Leases();
         Manager manager = new Manager(repoPessoas, repoProdutos, "Kleber", "54321");
+        Manager managerloginAtual;
+        OperatorSystem oploginAtual;
         repoPessoas.addPeople(manager);
         
 	while(entra1){
@@ -37,17 +39,20 @@ public class Main {
                     login = sc.next();
                     System.out.println("Digite sua senha: ");
                     senha = sc.next();
+                    managerloginAtual = repoPessoas.loginManager(login, senha);
                     
-                    entra2 = repoPessoas.loginManager(login, senha);
-                    if(entra2)
-                        entra1 = false;
-                    else{
+                    if(managerloginAtual != null){
+                       entra2 = true;
+                       entra1 = false;
+                    }else{
                         System.out.println();
                         System.out.println("Login ou senha inválida!");
                         System.out.println();
                         System.out.println();
                         System.out.println();
                     }
+                    
+               
                     break;
                 case "2":
                     System.out.println("***Faça seu Login***");
@@ -56,9 +61,11 @@ public class Main {
                     System.out.println("Digite sua senha: ");
                     senha = sc.next();
                     
-                    entra3 = repoPessoas.loginOperatorSystem(login, senha);
-                    if(entra3)
+                    oploginAtual = repoPessoas.loginOperatorSystem(login, senha);
+                    if(oploginAtual != null){
+                        entra3 = true;
                         entra1 = false;
+                    }
                     else{
                         System.out.println();
                         System.out.println("Login ou senha inválida!");
@@ -68,6 +75,8 @@ public class Main {
                     }
                     break;
                 case "3":
+                    System.out.println();
+                    System.out.println("Saindo...");
                     entra1 = false;
                     break;
                 default:
@@ -80,8 +89,7 @@ public class Main {
         System.out.println();
         
         while(entra2){
-            System.out.println("Login efetuado!");
-            break;
+            
         }
         while(entra3){
             System.out.println("Login efetuado!");
