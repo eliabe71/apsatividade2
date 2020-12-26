@@ -1,7 +1,5 @@
 package enties.products;
 
-import org.graalvm.compiler.lir.amd64.vector.AMD64VectorBinary.AVXBinaryConstFloatOp;
-
 public abstract class Product {
     protected String id;
     protected String titulo;

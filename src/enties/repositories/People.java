@@ -8,7 +8,7 @@ public class People {
     private Map<Integer,Person> pessoas;
 
     public People(){
-        this.pessoas = new HashMap<Integer, Person>();
+        this.pessoas = new HashMap<>();
     }
 
     public boolean addPeople(Person person){
@@ -17,9 +17,7 @@ public class People {
     }
 
     public boolean removePeople(int id){
-        if(this.pessoas.remove(id) != null);
-            return true;
-        return false;
+        return this.pessoas.remove(id) != null;
     }
 
     public Person getPerson(int id){

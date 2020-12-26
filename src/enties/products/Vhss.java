@@ -33,7 +33,7 @@ public class Vhss extends Film{
 
     @Override
     public String toString() {
-        return "Blurays [id= "+ this.id + ", titulo= " + this.titulo + " genero=" + this.genero + 
+        return "Vhss [id= "+ this.id + ", titulo= " + this.titulo + " genero=" + this.genero + 
         ", locado= " + this.locado + ", anoLancamento= "+this.anoLancamaneto +", duracao= "+this.duracao+
         ", cores= " + this.cores + "]";
     }

@@ -32,7 +32,7 @@ public class Dvds extends Film {
 
     @Override
     public String toString() {
-        return "Blurays [id= "+ this.id + ", titulo= " + this.titulo + " genero=" + this.genero + 
+        return "Dvds [id= "+ this.id + ", titulo= " + this.titulo + " genero=" + this.genero + 
         ", locado= " + this.locado + ", anoLancamento= "+this.anoLancamaneto +", duracao= "+this.duracao+
         ", arranhado= " + this.arranhado + "]";
     }

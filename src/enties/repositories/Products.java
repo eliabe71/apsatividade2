@@ -1,26 +1,25 @@
 package enties.repositories;
 
 import enties.products.Product;
+import java.util.HashMap;
 
 public class Products {
-    private HashMap<Integer, Product> repository;
+    private HashMap<String, Product> repository;
 
-	public Products() {
-		this.repository = new HashMap<Int>();
-	}
-	
-	public boolean add(Product product) {
-		this.repository.put(product.getId(), product);
-		return true;
-	}
-	
-	public boolean remove(int id) {
-		if(this.repository.remove(id) != null);
-			return true;
-		return false;
-	}
-	
-	public Product get(int id) { //id return person
-		return this.repository.get(id);
-	}
+    public Products() {
+            this.repository = new HashMap<>();
+    }
+
+    public boolean add(Product product) {
+            this.repository.put(product.getId(), product);
+            return true;
+    }
+
+    public boolean remove(String id) {
+        return this.repository.remove(id) != null;
+    }
+
+    public Product get(String id) { //id return person
+        return this.repository.get(id);
+    }
 }

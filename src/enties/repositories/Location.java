@@ -5,7 +5,7 @@ import java.util.Date;
 
 
 public class Location {
-    private int codigoProduto;
+    private String codigoProduto;
     private int matriculaCliente;
     private Calendar dataSaida;
     private Calendar dataPrevistaEntrega;
@@ -13,7 +13,7 @@ public class Location {
 
     public Location(){}
 
-    public Location(int codigoProduto, int matriculaCliente, Calendar dataSaida, Calendar dataPrevistaEntrega){
+    public Location(String codigoProduto, int matriculaCliente, Calendar dataSaida, Calendar dataPrevistaEntrega){
         this.codigoProduto = codigoProduto;
         this.matriculaCliente = matriculaCliente;
         this.dataSaida = dataSaida;
@@ -30,10 +30,10 @@ public class Location {
         return 0;
     }
 
-    public int getCodigoProduto(){
+    public String getCodigoProduto(){
         return this.codigoProduto;
     }
-    public void setCodigoProduto(int codigoProduto){
+    public void setCodigoProduto(String codigoProduto){
         this.codigoProduto = codigoProduto;
     }
 
