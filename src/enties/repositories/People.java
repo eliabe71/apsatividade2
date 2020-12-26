@@ -1,5 +1,7 @@
 package enties.repositories;
 
+import enties.actors.Client;
+import enties.actors.OperatorSystem;
 import java.util.Map;
 import java.util.HashMap;
 import enties.actors.Person;
@@ -19,9 +21,28 @@ public class People {
     public boolean removePeople(int id){
         return this.pessoas.remove(id) != null;
     }
+    
+    public void listarClientes(){
+        for(Person p : pessoas.values()){
+            if(p instanceof Client)
+                System.out.println(p);
+        }
+    }
+    
+     public void listarOperadores(){
+        for(Person p : pessoas.values()){
+            if(p instanceof OperatorSystem)
+                System.out.println(p);
+        }
+    }
 
     public Person getPerson(int id){
         return this.pessoas.get(id);
+    }
+
+    @Override
+    public String toString() {
+        return "People[" + "pessoas=" + pessoas + "]";
     }
 
 }
