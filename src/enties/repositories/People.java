@@ -1,6 +1,8 @@
 package enties.repositories;
 
 import enties.actors.Client;
+import enties.actors.Employee;
+import enties.actors.Manager;
 import enties.actors.OperatorSystem;
 import java.util.Map;
 import java.util.HashMap;
@@ -35,6 +37,22 @@ public class People {
                 System.out.println(p);
         }
     }
+     
+     public boolean loginManager(String login, String senha){
+         for(Person p : pessoas.values()){
+            if(p instanceof Manager)
+                return login.equals(((Manager) p).getLogin()) && senha.equals(((Manager) p).getSenha());
+         }
+         return false;
+     }
+     
+     public boolean loginOperatorSystem(String login, String senha){
+         for(Person p : pessoas.values()){
+            if(p instanceof OperatorSystem)
+                return login.equals(((OperatorSystem) p).getLogin()) && senha.equals(((OperatorSystem) p).getSenha());
+         }
+         return false;
+     }
 
     public Person getPerson(int id){
         return this.pessoas.get(id);

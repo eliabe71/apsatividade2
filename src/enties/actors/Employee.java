@@ -8,8 +8,6 @@ public abstract class Employee extends Person{
         this.login = login;
         this.senha = senha;
     }
-
-    public abstract boolean efetuarLogin(String login,String senha);
     
     public String getLogin() {
         return login;

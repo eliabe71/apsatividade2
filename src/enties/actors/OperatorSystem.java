@@ -23,13 +23,13 @@ public class OperatorSystem extends Employee{
         Location location = new Location(codigoProduto, matriculaCliente, dataSaida, dataPrevistaEntrega);
         return repoleases.add(location);
     }
-    public void removeLocacao(int id){
-       repoleases.remove(id);
+    public void removeLocacao(String codigoProduto){
+       repoleases.remove(codigoProduto);
     }
-    public double fazerbaixa(int id){
-        Location newLocation = repoleases.get(id);
+    public double fazerbaixa(String codigoProduto){
+        Location newLocation = repoleases.get(codigoProduto);
         Product p = repoProduct.get(newLocation.getCodigoProduto());
-        repoleases.remove(id);
+        repoleases.remove(codigoProduto);
         double v = (double) (p.calculaDiaria() + newLocation.calcularMulta());
         return v;
     }
@@ -41,11 +41,6 @@ public class OperatorSystem extends Employee{
     public boolean procuraClente(int id){
          if (repoPeople.getPerson(id) == null) return false;
             return true ;
-    }
-    
-    @Override
-    public boolean efetuarLogin(String login, String senha) {
-        return login.equals(this.login) && senha.equals(this.senha);
     }
 
     public Leases getRepoleases() {
@@ -71,6 +66,28 @@ public class OperatorSystem extends Employee{
     public void setRepoPeople(People repoPeople) {
         this.repoPeople = repoPeople;
     }
+
+    @Override
+    public String getLogin() {
+        return login;
+    }
+
+    @Override
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    @Override
+    public String getSenha() {
+        return senha;
+    }
+
+    @Override
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+    
+    
 
     @Override
     public String toString() {

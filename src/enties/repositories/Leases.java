@@ -15,12 +15,20 @@ public class Leases {
         return this.repository.add(location);
     }
 
-    public boolean remove(int id) {
-        return this.repository.remove(id) != null;
+    public boolean remove(String codigoProduto) {
+        for(Location l : repository){
+            if(l.getCodigoProduto().equals(codigoProduto))
+                return this.repository.remove(l);
+        }
+        return false;
     }
 
-    public Location get(int id) { //id return person
-        return this.repository.get(id);
+    public Location get(String codigoProduto) { 
+       for(Location l : repository){
+            if(l.getCodigoProduto().equals(codigoProduto))
+                return l;
+        }
+       return null;
     }
 
     @Override

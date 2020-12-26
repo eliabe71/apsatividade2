@@ -5,7 +5,7 @@ import enties.repositories.*;
 public class Manager extends Employee{
     private People repo;
     private Products product;
-
+    
     public Manager(People repo, String login, String senha) {
         super(login, senha);
         this.repo = repo;
@@ -17,20 +17,14 @@ public class Manager extends Employee{
         this.product = product;
     }
     
-    
-    @Override
-    public boolean efetuarLogin(String login, String senha) {
-        return this.login.equals(login) && this.senha.equals(senha);
+    public boolean adcionarCliente(Person p){
+        return repo.addPeople(p);
     }
-    
-    public void adcionarCliente(Person p){
-        repo.addPeople(p);
+    public boolean adicionarProduto(Product p){
+        return product.add(p);
     }
-    public void adicionarProduto(Product p){
-        product.add(p);
-    }
-    public void adicionarOperador(Person person){
-        repo.addPeople(person);
+    public boolean adicionarOperador(Person person){
+        return repo.addPeople(person);
     }
     public void listarClientes(){
         repo.listarClientes();
@@ -42,19 +36,64 @@ public class Manager extends Employee{
         repo.listarOperadores();
     }
     public boolean procurarProduto(String id){
-
-        if(product.get(id)== null ) return false;
+        if(product.get(id) == null )
+            return false;
+        
+        System.out.println(product.get(id));
         return true;
     }
     public boolean procurarOperador(int id){
-        if(repo.getPerson(id)== null ) return false;
+        if(repo.getPerson(id)== null ) 
+            return false;
+        
+        System.out.println(repo.getPerson(id));
         return true;
-
     }
     public boolean procurarCliente(int id){
-        if(repo.getPerson(id)== null ) return false;
+        if(repo.getPerson(id)== null )
+            return false;
+        
+        System.out.println(repo.getPerson(id));
         return true;
     }
+
+    public People getRepo() {
+        return repo;
+    }
+
+    public void setRepo(People repo) {
+        this.repo = repo;
+    }
+
+    public Products getProduct() {
+        return product;
+    }
+
+    public void setProduct(Products product) {
+        this.product = product;
+    }
+
+    @Override
+    public String getLogin() {
+        return login;
+    }
+
+    @Override
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    @Override
+    public String getSenha() {
+        return senha;
+    }
+
+    @Override
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+    
+    
 
     @Override
     public String toString() {
