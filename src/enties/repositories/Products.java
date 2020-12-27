@@ -24,7 +24,7 @@ public class Products {
         return this.repository.remove(id) != null;
     }
 
-    public Product get(String id) { //id return person
+    public Product get(String id) {
         return this.repository.get(id);
     }
 

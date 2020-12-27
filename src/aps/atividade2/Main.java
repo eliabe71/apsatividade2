@@ -3,6 +3,7 @@ package aps.atividade2;
 import enties.actors.*;
 import enties.products.*;
 import enties.repositories.*;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Scanner;
 
@@ -16,7 +17,7 @@ public class Main {
         People repoPessoas = new People();
         Products repoProdutos = new Products();
         Leases repoLocacoes = new Leases();
-        Manager manager = new Manager("Kleber",matricula++, "Kleber123", "54321", repoPessoas, repoProdutos);
+        Manager manager = new Manager("Aps2020",matricula++, "aps", "123", repoPessoas, repoProdutos);
         Manager managerloginAtual = null; // Será usado durante toda a execução do sistema
         OperatorSystem opLoginAtual = null;
         repoPessoas.addPeople(manager);
@@ -429,69 +430,99 @@ public class Main {
             }
             while(entra3){
                 System.out.println("***Olá Operador "+opLoginAtual.getNome());
-                System.out.println("1 – Fazer locação");
-                System.out.println("2 – Dar baixa em locação");
-                System.out.println("3 – Excluir locação");
-                System.out.println("4 – Procurar Produto");
-                System.out.println("5 – Procurar Cliente" );
-                System.out.println("6 – Sair");
+                System.out.println("1 - Fazer locação");
+                System.out.println("2 - Dar baixa em locação");
+                System.out.println("3 - Excluir locação");
+                System.out.println("4 - Procurar Produto");
+                System.out.println("5 - Procurar Cliente" );
+                System.out.println("6 - Sair");
                 System.out.println("Digite a opção: ");
-                int e;
+                
+                String e;
 
                 Scanner ler = new Scanner(System.in);
-                e = ler.nextInt();
+                e = ler.next();
+                ler.nextLine();
+                System.out.println();
+                System.out.println();
                 switch (e){
-                    case 1:
-                        System.out.println("Digite Codigo Do Produto");
-                        String codigoProduto = ler.nextLine();
+                    case "1":
+                        System.out.println("Digite Código Do Produto");
+                        String codigoProduto = ler.next();
+                        
                         ler.nextLine();
-                        System.out.println("Digite a matricula do Cliente");
-                        int matriculaCliente2 = ler.nextInt();;
-                        Calendar dataSaida = Calendar.getInstance();
-                        Calendar dataPrevistaEntrega = Calendar.getInstance();
-                        System.out.println("Digite o dia de Entrega");
-                        int dia = ler.nextInt();
-                        System.out.println("Digite o Mes de Entrega");
-                        int mes = ler.nextInt();
-                        System.out.println("Digite o Ano de Entrega");
-                        int ano = ler.nextInt();
-                        dataPrevistaEntrega.set(ano, mes ,dia);
-                        Location location = new Location(codigoProduto, matriculaCliente2, dataSaida, dataPrevistaEntrega);
-                        if(repoLocacoes.add(location))
-                            System.out.println("Locação realizada!");
+                        Product p = repoProdutos.get(codigoProduto);
+                        if(p != null && !p.isLocado()){
+                            
+                            System.out.println("Digite a matrícula do Cliente");
+                            int matriculaCliente2 = ler.nextInt();
+                            Person c = repoPessoas.getPerson(matriculaCliente2);
+                            if(c != null && c instanceof Client){
+                                Calendar dataSaida = Calendar.getInstance();
+                                Calendar dataPrevistaEntrega = Calendar.getInstance();
+                                System.out.println("Digite o dia de Entrega");
+                                int dia = ler.nextInt();
+                                System.out.println("Digite o Mês de Entrega");
+                                int mes = ler.nextInt();
+                                System.out.println("Digite o Ano de Entrega");
+                                int ano = ler.nextInt();
+                                dataPrevistaEntrega.set(ano, mes-1 ,dia);
+                                Location location = new Location(codigoProduto, matriculaCliente2, dataSaida, dataPrevistaEntrega);
+                                if(repoLocacoes.add(location)){
+                                    p.setLocado(true);
+                                    System.out.println("Locação realizada!");
+                                }
+                            }else{
+                                System.out.println("Cliente não cadastrado!");
+                            }
+                        }else if(p == null){
+                            System.out.println("O produto não existe!");
+                        }else{
+                            System.out.println("O produto já está locado!");
+                        }
                         break;
-                    case 2:
+                    case "2":
+                        DecimalFormat df = new DecimalFormat("0.00");
                         System.out.println("Digite o Código do Produto ");
                         String codigo = ler.next();
                         ler.nextLine();
-                        System.out.println("Total a Ser Pago : " +opLoginAtual.fazerbaixa(codigo)+ "R$");
+                        double valor = opLoginAtual.fazerbaixa(codigo);
+                        if(valor > 0)
+                            System.out.println("Total a Ser Pago : R$ " + df.format(valor));
+                        else
+                            System.out.println("Não é possível dar baixa pois o produto não existe ou não está locado!");
                         break;
-                    case 3:
+                    case "3":
                         System.out.println("Digite o Código do Produto ");
                         String codigo2  = ler.next();
                         ler.nextLine();
-                        opLoginAtual.removeLocacao(codigo2);
+                        if(opLoginAtual.removeLocacao(codigo2)){
+                            System.out.println("Locação removida!");
+                        }else{
+                            System.out.println("Locação não existe!");
+                        }
                         break;
-                    case 4:
+                    case "4":
                         System.out.println("Digite o Código do Produto ");
                         String codigo3  = ler.next();
                         ler.nextLine();
-                        if(opLoginAtual.procuraProduto(codigo3)) System.out.println("O Produto Existe");
-                        else System.out.println("Produto Inexistente");
+                        if(!opLoginAtual.procuraProduto(codigo3)) 
+                            System.out.println("Produto Inexistente");
                         break;
-                    case 5:
+                    case "5":
                         System.out.println("Digite a Matrícula do Cliente ");
                         int matricula1 = Integer.parseInt(ler.next());
                         ler.nextLine();
 
-                        if(opLoginAtual.procuraCliente(matricula1)) System.out.println("O Cliente Existe");
-                        else System.out.println("Cliente Inexistente");
+                        if(!opLoginAtual.procuraCliente(matricula1))
+                            System.out.println("Cliente Inexistente");
                         break;
-                    case 6:
+                    case "6":
                         entra1 = true;
                         entra3 = false;
                         break;
                     default:
+                        System.out.println("Opção inválida!");
                 }
                 System.out.println();
                 System.out.println();

@@ -1,6 +1,7 @@
 package enties.actors;
 import enties.repositories.*;
 import enties.products.*;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 
 public class OperatorSystem extends Employee{
@@ -29,24 +30,41 @@ public class OperatorSystem extends Employee{
         Location location = new Location(codigoProduto, matriculaCliente, dataSaida, dataPrevistaEntrega);
         return repoleases.add(location);
     }
-    public void removeLocacao(String codigoProduto){
-       repoleases.remove(codigoProduto);
+    public boolean removeLocacao(String codigoProduto){
+       Product p = this.repoProduct.get(codigoProduto);
+       if(p != null)
+           p.setLocado(false);
+       return repoleases.remove(codigoProduto);
     }
     public double fazerbaixa(String codigoProduto){
-        Location newLocation = this.repoleases.get(codigoProduto);
-        Product p = this.repoProduct.get(newLocation.getCodigoProduto());
-        double v = (double) (newLocation.calcularPrecoDiaria(p) + newLocation.calcularMulta());
-        this.repoleases.remove(codigoProduto);
-        return v;
+        DecimalFormat df = new DecimalFormat("0.00");
+
+        if(this.repoleases.get(codigoProduto) != null){
+            Location newLocation = this.repoleases.get(codigoProduto);
+            Product p = this.repoProduct.get(newLocation.getCodigoProduto());
+            p.setLocado(false);
+        
+            System.out.println("Valor do alugel: R$ " + df.format(newLocation.calcularPrecoDiaria(p)));
+            System.out.println("Valor da multa: R$ " + df.format(newLocation.calcularMulta()));
+            double v = (double) (newLocation.calcularPrecoDiaria(p) + newLocation.calcularMulta());
+            this.repoleases.remove(codigoProduto);
+            return v;
+        }
+        return -1;
     }
     public boolean procuraProduto(String codigoProduto){
-        if( repoProduct.get(codigoProduto) == null) return false;
+        if( repoProduct.get(codigoProduto) == null)
+            return false;
+       
+        System.out.println(repoProduct.get(codigoProduto));
         return true;
 
     }
     public boolean procuraCliente(int id){
         if (repoPeople.getPerson(id) == null && !(repoPeople.getPerson(id) instanceof Client)) 
             return false;
+        
+        System.out.println(repoPeople.getPerson(id));
         return true ;
     }
 

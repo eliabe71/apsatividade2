@@ -23,7 +23,7 @@ public class Location {
 
     public double calcularMulta(){
         Date dataAtual = new Date(System.currentTimeMillis());
-        int diferenca = diffInDays(dataPrevistaEntrega.getTime(), dataAtual);
+        int diferenca = diffInDays(dataAtual, dataPrevistaEntrega.getTime());
 
         if(diferenca > 0)
             return diferenca*1.2;
@@ -32,13 +32,14 @@ public class Location {
     }
     
     public double calcularPrecoDiaria(Product p){
+        double taxaBasica = 1;
         Date dataAtual = new Date(System.currentTimeMillis());
-        int diferenca = diffInDays(dataPrevistaEntrega.getTime(), dataAtual);
+        int diferenca = diffInDays(dataAtual, dataSaida.getTime());
 
         if(diferenca > 0)
-            return diferenca*p.calculaDiaria();
+            return taxaBasica + diferenca*p.calculaDiaria();
 
-        return 0;
+        return taxaBasica;
     }
 
     public String getCodigoProduto(){
