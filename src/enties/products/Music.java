@@ -2,6 +2,8 @@ package enties.products;
 public abstract class Music extends Product{
     protected String autor;
     protected int numFaixas;
+    
+    public Music(){}
 
     public Music(String autor) {
         this.autor = autor;

@@ -2,6 +2,8 @@ package enties.products;
 
 public class Lps extends Music {
     private boolean raro ;
+    
+    public Lps(){}
 
     public Lps(boolean raro, String autor) {
         super(autor);

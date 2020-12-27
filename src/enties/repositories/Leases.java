@@ -8,7 +8,7 @@ public class Leases {
     private List<Location> repository;
 
     public Leases() {
-        this.repository = new ArrayList<Location>();
+        this.repository = new ArrayList<>();
     }
 
     public boolean add(Location location) {

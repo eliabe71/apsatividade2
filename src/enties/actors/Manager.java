@@ -5,6 +5,8 @@ import enties.repositories.*;
 public class Manager extends Employee{
     private People repo;
     private Products product;
+    
+    public Manager(){}
 
     public Manager(String nome, int matricula, String login, String senha, People repo, Products product) {
         super(nome, matricula, login, senha);

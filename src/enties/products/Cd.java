@@ -2,6 +2,8 @@ package enties.products;
 public class Cd extends Music{
     private boolean arranhado;
     private boolean duplo;
+    
+    public Cd(){}
 
     public Cd(boolean arranhado, boolean duplo, String autor) {
         super(autor);

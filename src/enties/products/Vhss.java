@@ -3,6 +3,8 @@ package enties.products;
 public class Vhss extends Film{
     private boolean cores;
 
+    public Vhss(){}
+    
     public Vhss(boolean cores) {
         this.cores = cores;
     }

@@ -12,7 +12,7 @@ public class Client extends Person{
         this.sexo = sexo;
     }
     
-    
+    public Client(){}
     
     public void setEndereco(String endereco){
             this.endereco = endereco;

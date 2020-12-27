@@ -4,7 +4,7 @@ public abstract class Employee extends Person{
     protected String login;
     protected String senha;
 
-    
+    public Employee(){}
     
     public Employee(String nome, int matricula, String login, String senha) {
         super(nome, matricula);

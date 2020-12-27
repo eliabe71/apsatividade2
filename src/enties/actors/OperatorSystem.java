@@ -7,6 +7,8 @@ public class OperatorSystem extends Employee{
     private Leases repoleases;
     private Products repoProduct;
     private People repoPeople;
+    
+    public OperatorSystem(){}
 
     public OperatorSystem(String nome, int matricula, String login, String senha) {
         super(nome, matricula, login, senha);
@@ -31,10 +33,10 @@ public class OperatorSystem extends Employee{
        repoleases.remove(codigoProduto);
     }
     public double fazerbaixa(String codigoProduto){
-        Location newLocation = repoleases.get(codigoProduto);
-        Product p = repoProduct.get(newLocation.getCodigoProduto());
-        repoleases.remove(codigoProduto);
-        double v = (double) (p.calculaDiaria() + newLocation.calcularMulta());
+        Location newLocation = this.repoleases.get(codigoProduto);
+        Product p = this.repoProduct.get(newLocation.getCodigoProduto());
+        double v = (double) (newLocation.calcularPrecoDiaria(p) + newLocation.calcularMulta());
+        this.repoleases.remove(codigoProduto);
         return v;
     }
     public boolean procuraProduto(String codigoProduto){
@@ -42,9 +44,10 @@ public class OperatorSystem extends Employee{
         return true;
 
     }
-    public boolean procuraClente(int id){
-         if (repoPeople.getPerson(id) == null) return false;
-            return true ;
+    public boolean procuraCliente(int id){
+        if (repoPeople.getPerson(id) == null && !(repoPeople.getPerson(id) instanceof Client)) 
+            return false;
+        return true ;
     }
 
     public Leases getRepoleases() {
@@ -113,8 +116,7 @@ public class OperatorSystem extends Employee{
 
     @Override
     public String toString() {
-        return "OperatorSystem [nome= "+this.nome+ ", matricula= "+this.matricula+ "repoleases=" 
-                + repoleases + ", repoProduct=" + repoProduct + ", repoPeople=" + repoPeople + "]";
+        return "OperatorSystem [nome= "+this.nome+ ", matricula= "+this.matricula + "]";
     }
     
 }

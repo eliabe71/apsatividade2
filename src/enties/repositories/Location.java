@@ -1,5 +1,6 @@
 package enties.repositories;
 
+import enties.products.Product;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -26,6 +27,16 @@ public class Location {
 
         if(diferenca > 0)
             return diferenca*1.2;
+
+        return 0;
+    }
+    
+    public double calcularPrecoDiaria(Product p){
+        Date dataAtual = new Date(System.currentTimeMillis());
+        int diferenca = diffInDays(dataPrevistaEntrega.getTime(), dataAtual);
+
+        if(diferenca > 0)
+            return diferenca*p.calculaDiaria();
 
         return 0;
     }
